@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ridge — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      color: #1a1a1a;
+    }
+    header {
+      background: linear-gradient(90deg, #ff7a18, #ffb677);
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 0.8; }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h2 { margin-bottom: 1rem; font-size: 1.4rem; }
+    .post {
+      background: white;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .post:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .post h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .post p { margin: 0; color: #444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ridge</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'quote' %}">Qoute</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Latest Posts</h2>
+    <div class="post">
+      <h3>How do you start learning systems design?</h3>
+      <p>Looking for book recommendations and projects I can try as a beginner.</p>
+    </div>
+    <div class="post">
+      <h3>Small script to clean CSV files (Python)</h3>
+      <p>A tiny script that trims whitespace, fixes dates, and normalizes headers.</p>
+    </div>
+  </div>
+</body>
+</html>
