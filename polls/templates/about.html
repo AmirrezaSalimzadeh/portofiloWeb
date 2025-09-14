@@ -1,71 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>About — Ridge</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f4f6fa;
+    * {
       margin: 0;
-      color: #1a1a1a;
+      padding: 0;
+      box-sizing: border-box;
     }
-    header {
-      background: linear-gradient(90deg, #ff7a18, #ffb677);
-      padding: 1rem 2rem;
-      color: white;
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #f9f9f9, #ece9e6);
+      color: #333;
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: flex-end;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 100;
     }
-    header h1 { margin: 0; font-size: 1.5rem; }
+
     nav a {
-      margin-left: 1.5rem;
+      margin-left: 30px;
       text-decoration: none;
-      color: white;
-      font-weight: 600;
-      transition: opacity 0.2s;
+      font-weight: 500;
+      color: #333;
+      font-size: 1rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      padding-bottom: 5px;
     }
-    nav a:hover { opacity: 0.8; }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+
+    nav a:hover {
+      color: #6c63ff;
+      border-bottom: 2px solid #6c63ff;
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+    /* About Section */
+    .about-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 120px 20px 40px;
     }
-    h2 { margin-top: 0; }
-    h3 { margin-top: 1rem; }
-    p { color: #444; line-height: 1.6; }
+
+    .about-box {
+      background: #fff;
+      padding: 50px 60px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      max-width: 900px;
+      text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      color: #222;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #6c63ff;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+      background: #f5f5f5;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-box {
+        padding: 30px 25px;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <header>
-    <h1>Ridge</h1>
     <nav>
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'about' %}">About</a>
+      <a href="/home/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/add_quote/">Add Quote</a>
     </nav>
   </header>
-  <div class="container">
-    <div class="card">
-      <h2>About Ridge</h2>
-      <p>Ridge is a community for curious people to share projects, ask questions, and discover ideas.</p>
+
+  <!-- About Section -->
+  <section class="about-container">
+    <div class="about-box">
+      <h2>About Our Quotes Website</h2>
+      <p>
+        Welcome to <span class="highlight">Quotes Website</span>, a place where words inspire, motivate, and transform lives.  
+        We believe that a single quote has the power to spark change, ignite passion, and bring comfort.
+      </p>
+      <p>
+        Our mission is to create a growing collection of meaningful quotes from around the world.  
+        Whether it’s wisdom from great thinkers, authors, or anonymous voices, each quote here is a piece of inspiration waiting to be shared.
+      </p>
+      <p>
+        You can browse our collection, learn about the stories behind the words, and even <span class="highlight">add your own quotes</span> to inspire others.
+      </p>
     </div>
-    <div class="card">
-      <h3>Our Mission</h3>
-      <p>To help curious people learn and grow by connecting them with practical answers and friendly conversations.</p>
-    </div>
-    <div class="card">
-      <h3>Contact</h3>
-      <p>Email us at <a href="mailto:hello@ridge.example" style="color:#ff7a18; text-decoration:none;">hello@ridge.example</a></p>
-    </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Quotes Website. All rights reserved.
+  </footer>
+
 </body>
 </html>
+

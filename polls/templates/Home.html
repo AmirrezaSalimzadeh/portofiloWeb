@@ -1,74 +1,152 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Ridge — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes Website</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f4f6fa;
+    * {
       margin: 0;
-      color: #1a1a1a;
+      padding: 0;
+      box-sizing: border-box;
     }
-    header {
-      background: linear-gradient(90deg, #ff7a18, #ffb677);
-      padding: 1rem 2rem;
-      color: white;
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #f9f9f9, #ece9e6);
+      color: #333;
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: flex-end;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 100;
     }
-    header h1 { margin: 0; font-size: 1.5rem; }
+
     nav a {
-      margin-left: 1.5rem;
+      margin-left: 30px;
       text-decoration: none;
-      color: white;
-      font-weight: 600;
-      transition: opacity 0.2s;
+      font-weight: 500;
+      color: #333;
+      font-size: 1rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      padding-bottom: 5px;
     }
-    nav a:hover { opacity: 0.8; }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+
+    nav a:hover {
+      color: #6c63ff;
+      border-bottom: 2px solid #6c63ff;
     }
-    h2 { margin-bottom: 1rem; font-size: 1.4rem; }
-    .post {
+
+    /* Hero Section */
+    .hero {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 20px 40px;
+    }
+
+    .quote-box {
       background: white;
-      border-radius: 12px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 15px;
+      padding: 60px;
+      max-width: 900px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
     }
-    .post:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      line-height: 1.4;
+      font-style: italic;
+      color: #222;
+      margin-bottom: 25px;
     }
-    .post h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1.1rem; }
-    .post p { margin: 0; color: #444; }
+
+    .author {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #666;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+      background: #f5f5f5;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .quote {
+        font-size: 2rem;
+      }
+      .quote-box {
+        padding: 40px 25px;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <header>
-    <h1>Ridge</h1>
     <nav>
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'about' %}">About</a>
-      <a href="{% url 'quote' %}">Qoute</a>
+      <a href="/home/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/add_quote/">Add Quote</a>
     </nav>
   </header>
-  <div class="container">
-    <h2>Latest Posts</h2>
-    <div class="post">
-      <h3>How do you start learning systems design?</h3>
-      <p>Looking for book recommendations and projects I can try as a beginner.</p>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="quote-box">
+        <p class="quote">{{quote|default:"No quote yet"}}</p>
+        <p class="author">{{author|default:"Unknown"}}</p>
+
     </div>
-    <div class="post">
-      <h3>Small script to clean CSV files (Python)</h3>
-      <p>A tiny script that trims whitespace, fixes dates, and normalizes headers.</p>
-    </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Quotes Website. All rights reserved.
+  </footer>
+
 </body>
 </html>

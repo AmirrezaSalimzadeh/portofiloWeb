@@ -1,6 +1,7 @@
 import random
+from .models import Quotes
 def randomQuote():
-    address = '/home/amirreza/myblog/polls/textfiles/quotes.txt'
-    with open(address,'r') as file:
-        qoutesLst =file.readlines()
-    return qoutesLst[random.randint(0,20)]
+    quotes = list(Quotes.objects.all())
+    if quotes:
+        random_quote = random.choice(quotes)
+        return random_quote.author,random_quote.content
