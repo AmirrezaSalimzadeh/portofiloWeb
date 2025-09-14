@@ -1,152 +1,17 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quotes Website</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(120deg, #f9f9f9, #ece9e6);
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Navbar */
-    header {
-      width: 100%;
-      padding: 20px 50px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-
-    nav a {
-      margin-left: 30px;
-      text-decoration: none;
-      font-weight: 500;
-      color: #333;
-      font-size: 1rem;
-      transition: color 0.3s ease, border-bottom 0.3s ease;
-      padding-bottom: 5px;
-    }
-
-    nav a:hover {
-      color: #6c63ff;
-      border-bottom: 2px solid #6c63ff;
-    }
-
-    /* Hero Section */
-    .hero {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 100px 20px 40px;
-    }
-
-    .quote-box {
-      background: white;
-      border-radius: 15px;
-      padding: 60px;
-      max-width: 900px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-
-    .quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      line-height: 1.4;
-      font-style: italic;
-      color: #222;
-      margin-bottom: 25px;
-    }
-
-    .author {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #666;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
-      background: #f5f5f5;
-      border-top: 1px solid #ddd;
-    }
-
-    /* Animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .quote {
-        font-size: 2rem;
-      }
-      .quote-box {
-        padding: 40px 25px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navbar -->
-  <header>
-    <nav>
-      <a href="/home/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/add_quote/">Add Quote</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="quote-box">
-        <p class="quote">{{quote|default:"No quote yet"}}</p>
-        <p class="author">{{author|default:"Unknown"}}</p>
-
+{% extends "base.html" %}
+{% block title %}Home - Quotes{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card-quote text-center">
+            <blockquote class="blockquote mb-0">
+                <p class="fs-2 text-dark">“{{ quote }}”</p>
+                <footer class="blockquote-footer mt-3 fs-5 text-primary">{{ author }}</footer>
+            </blockquote>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'add_quote' %}" class="btn btn-outline-primary btn-lg">Add Your Own Quote</a>
+        </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 Quotes Website. All rights reserved.
-  </footer>
-
-</body>
-</html>
+</div>
+{% endblock %}
