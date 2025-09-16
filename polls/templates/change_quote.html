@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Change Quotes{% endblock %}
+{% block content %}
+<section class="py-16">
+    <div class="max-w-5xl mx-auto">
+        <header class="mb-10 text-center">
+            <h2 class="text-4xl font-semibold text-white">Manage Your Quotes</h2>
+            <p class="mt-3 text-slate-100/80">Review what you have shared so far. Editing tools are coming soon.</p>
+        </header>
+        {% if quotes %}
+        <div class="space-y-8">
+            {% for quote in quotes %}
+            <article class="bg-gradient-to-br from-indigo-500/80 to-slate-900/80 border border-white/10 rounded-3xl shadow-lg p-8 backdrop-blur">
+                <p class="font-playwrite text-2xl text-slate-50">{{ quote.content }}</p>
+                <div class="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm">
+                    <a href="/Authors/{{ quote.author.name|slugify }}/" class="font-dancing text-xl text-indigo-100 hover:text-white underline-offset-4 hover:underline">
+                        {{ quote.author.name }}
+                    </a>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in quote.tags.all %}
+                            <span class="font-bitcount text-xs tracking-[0.3em] uppercase bg-brand/40 text-indigo-100 px-3 py-1 rounded-full">
+                                {% if tag.category %}{{ tag.category.name }} · {% endif %}{{ tag.name }}
+                            </span>
+                        {% empty %}
+                            <span class="text-slate-200 uppercase tracking-[0.3em] text-xs">No tags yet</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="button" class="mt-6 w-full md:w-auto bg-slate-950/60 text-slate-200 cursor-not-allowed px-5 py-2 rounded-full border border-white/20 text-xs uppercase tracking-[0.2em]">Edit tools coming soon</button>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="bg-gradient-to-br from-indigo-500/80 to-slate-900/80 border border-white/10 rounded-3xl shadow-lg p-10 text-center">
+            <p class="text-slate-100">No quotes to manage yet. <a href="{% url 'add_quote' %}" class="text-indigo-200 hover:text-white underline-offset-4 hover:underline">Add your first quote</a>.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

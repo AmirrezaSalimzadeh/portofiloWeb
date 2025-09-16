@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 {% block title %}Sign In{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card-quote">
-            <h2 class="mb-4 text-primary">Sign In</h2>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-danger">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            <form method="post">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="username" class="form-label fw-bold">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label fw-bold">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 mt-3">Sign In</button>
-            </form>
-        </div>
+<section class="py-16">
+    <div class="max-w-xl mx-auto bg-gradient-to-br from-indigo-500/80 to-slate-900/80 border border-white/10 rounded-3xl shadow-xl p-10 backdrop-blur">
+        <h2 class="text-3xl font-semibold text-white mb-2">Welcome back</h2>
+        <p class="text-slate-100/80 mb-8">Enter your credentials to access your curated collection.</p>
+        <form method="post" class="space-y-6" autocomplete="off">
+            {% csrf_token %}
+            <div>
+                <label for="identifier" class="block text-sm font-semibold text-slate-100 uppercase tracking-[0.3em] mb-2">Username or Email</label>
+                <input type="text" id="identifier" name="identifier" required
+                       class="w-full bg-slate-950/70 border border-white/20 rounded-2xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-light" placeholder="username or email">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-semibold text-slate-100 uppercase tracking-[0.3em] mb-2">Password</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full bg-slate-950/70 border border-white/20 rounded-2xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-light" placeholder="••••••••">
+            </div>
+            <button type="submit" class="w-full bg-brand hover:bg-brand-light text-white font-semibold tracking-[0.2em] uppercase py-3 rounded-2xl transition">Sign In</button>
+        </form>
+        <p class="text-sm text-slate-400 mt-6 text-center">No account yet? <a href="{% url 'signup' %}" class="text-indigo-200 hover:text-white underline-offset-4 hover:underline">Create one</a>.</p>
     </div>
-</div>
+</section>
 {% endblock %}

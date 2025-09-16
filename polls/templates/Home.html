@@ -1,17 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Home - Quotes{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card-quote text-center">
-            <blockquote class="blockquote mb-0">
-                <p class="fs-2 text-dark">“{{ quote }}”</p>
-                <footer class="blockquote-footer mt-3 fs-5 text-primary">{{ author }}</footer>
+<section class="py-16">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-semibold text-white tracking-tight drop-shadow-lg">Daily Inspiration</h1>
+            <p class="mt-4 text-sky-100 text-lg drop-shadow">A single quote can shift your perspective. Refresh to discover more wisdom.</p>
+        </div>
+        {% if quote_obj %}
+        <article class="relative bg-gradient-to-br from-indigo-500/90 to-slate-900/90 backdrop-blur shadow-2xl rounded-3xl px-10 py-12 text-left">
+            <div class="absolute -top-12 -left-6 text-indigo-200/70 text-[140px] font-serif select-none">“</div>
+            <blockquote class="relative">
+                <p class="font-playwrite text-2xl md:text-3xl text-slate-50 leading-relaxed">{{ quote_obj.content }}</p>
             </blockquote>
+            <div class="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-slate-200">
+                <a href="/Authors/{{ quote_obj.author.name|slugify }}/" class="font-dancing text-2xl hover:text-white transition-colors underline-offset-4 hover:underline">
+                    {{ quote_obj.author.name }}
+                </a>
+                <span class="font-bitcount text-sm tracking-[0.3em] uppercase bg-indigo-600/40 px-4 py-2 rounded-full text-indigo-100">
+                    {{ category }}
+                </span>
+            </div>
+        </article>
+        {% else %}
+        <div class="bg-slate-900/60 text-slate-100 p-10 rounded-3xl shadow-2xl text-center">
+            <p class="text-xl">No quotes yet. Be the first to <a class="underline text-indigo-200" href="{% url 'add_quote' %}">add one</a>.</p>
         </div>
-        <div class="text-center mt-4">
-            <a href="{% url 'add_quote' %}" class="btn btn-outline-primary btn-lg">Add Your Own Quote</a>
-        </div>
+        {% endif %}
     </div>
-</div>
+</section>
 {% endblock %}
